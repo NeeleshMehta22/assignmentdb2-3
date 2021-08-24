@@ -102,7 +102,7 @@ const userdata = await fetch("/users/get")
         for(const user of userdata){
 
             console.log("user","itemCount",itemCount,user)
-            debugger
+        
             this.firstname=user.firstname;
             this.UserId=user.id;
             this.middlename=user.middlename;
