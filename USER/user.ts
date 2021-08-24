@@ -30,7 +30,7 @@ interface Icrud<T>{
 
 // some global letiables used in code
 let row;
-let j=0;
+let initialRowCount=0;
 let value1;
 let value2;
 let value3;
@@ -56,18 +56,18 @@ class Myclass extends model implements Icrud<any>{
     for( let k=0;k<11;k++)
     {
         addc = addrow.insertCell();
-        addc.innerHTML=`<input id="inp${k}[${j}]">`
+        addc.innerHTML=`<input id="inp${k}[${initialRowCount}]">`
     
     }
     
     const btns=document.createElement('td');
     btns.innerHTML=`
-    <button id="Editing" onClick="new Myclass().Update(this,${j})">Edit</button>
-    <button id="Cancel[${j}]" onClick="new Myclass().Cancel(${j})" disabled>Cancel</button>
-    <button id="Save" onClick="new Myclass().Save(${j})">Save</button>
-    <button id="onDeleting" onClick="new Myclass().Delete(this,${j})">Delete</button>`;
+    <button id="Editing" onClick="new Myclass().Update(this,${initialRowCount})">Edit</button>
+    <button id="Cancel[${initialRowCount}]" onClick="new Myclass().Cancel(${initialRowCount})" disabled>Cancel</button>
+    <button id="Save" onClick="new Myclass().Save(${initialRowCount})">Save</button>
+    <button id="onDeleting" onClick="new Myclass().Delete(this,${initialRowCount})">Delete</button>`;
     addrow.appendChild(btns);
-    j++;
+    initialRowCount++;
 
 
 }
@@ -117,27 +117,27 @@ const userdata = await fetch("/users/get")
                     const customern= await this.getcustomername(user.id).then((obj)=>obj);
                     // const role = await this.getrolenamename(user.id).then((obj)=>obj);
                     // console.log(customern)
-                    validation+=`<td><input id='inp0[${j}]'  value="${this.UserId}" disabled></td>`;
-                    validation+=`<td><input id='inp1[${j}]'  value="${this.firstname}" disabled></td>`;
-                    validation+=`<td><input id='inp2[${j}]'  value="${this.middlename}" disabled></td>`;
-                    validation+=`<td><input id='inp3[${j}]'  value="${this.lastname}" disabled></td>`;
-                    validation+=`<td><input id='inp4[${j}]'  value="${this.email}" disabled></td>`;
-                    validation+=`<td><input id='inp5[${j}]'  value="${this.phonenumber}" disabled></td>`;
-                    validation+=`<td><input id='inp6[${j}]'  value="${this.role}" disabled></td>`;
-                    validation+=`<td><input id='inp7[${j}]'  value="${this.address}" disabled></td>`;
-                    validation+=`<td><input id='inp8[${j}]'  value="${customern}" disabled></td>`;
-                    validation+=`<td><input id='inp9[${j}]'  value="${this.createdon}" disabled></td>`;
-                    validation+=`<td><input id='inp10[${j}]'  value="${this.modifiedon}" disabled></td>`;
+                    validation+=`<td><input id='inp0[${initialRowCount}]'  value="${this.UserId}" disabled></td>`;
+                    validation+=`<td><input id='inp1[${initialRowCount}]'  value="${this.firstname}" disabled></td>`;
+                    validation+=`<td><input id='inp2[${initialRowCount}]'  value="${this.middlename}" disabled></td>`;
+                    validation+=`<td><input id='inp3[${initialRowCount}]'  value="${this.lastname}" disabled></td>`;
+                    validation+=`<td><input id='inp4[${initialRowCount}]'  value="${this.email}" disabled></td>`;
+                    validation+=`<td><input id='inp5[${initialRowCount}]'  value="${this.phonenumber}" disabled></td>`;
+                    validation+=`<td><input id='inp6[${initialRowCount}]'  value="${this.role}" disabled></td>`;
+                    validation+=`<td><input id='inp7[${initialRowCount}]'  value="${this.address}" disabled></td>`;
+                    validation+=`<td><input id='inp8[${initialRowCount}]'  value="${customern}" disabled></td>`;
+                    validation+=`<td><input id='inp9[${initialRowCount}]'  value="${this.createdon}" disabled></td>`;
+                    validation+=`<td><input id='inp10[${initialRowCount}]'  value="${this.modifiedon}" disabled></td>`;
 
 
                     // adding buttons for crud operations
                     validation+=`<td id="btn1"> 
-                    <button id="Editing" onClick="new Myclass().Update(this,${j})">Edit</button>
-                    <button id="Cancel[${j}]" onClick="new Myclass().Cancel(${j})" disabled>Cancel</button>
-                    <button id="Save" onClick="new Myclass().Save(${j})">Save</button>
-                    <button id="onDeleting" onClick="new Myclass().Delete(this,${j})">Delete</button> </td>`;
+                    <button id="Editing" onClick="new Myclass().Update(this,${initialRowCount})">Edit</button>
+                    <button id="Cancel[${initialRowCount}]" onClick="new Myclass().Cancel(${initialRowCount})" disabled>Cancel</button>
+                    <button id="Save" onClick="new Myclass().Save(${initialRowCount})">Save</button>
+                    <button id="onDeleting" onClick="new Myclass().Delete(this,${initialRowCount})">Delete</button> </td>`;
                             validation+=`</tr>`;
-                    j++;
+                    initialRowCount++;
         
                     
                     document.getElementById("page").innerHTML=` ${tab} ${validation}
@@ -181,25 +181,25 @@ const userdata = await fetch("/users/get")
 //                 console.log('above')
 //                 const customern=  this.getcustomername(user.id).then((obj)=>obj);
 //                 console.log(customern)
-//                 validation+=`<td><input id='inp0[${j}]'  value="${this.UserId}" disabled></td>`;
-//                 validation+=`<td><input id='inp1[${j}]'  value="${this.firstname}" disabled></td>`;
-//                 validation+=`<td><input id='inp2[${j}]'  value="${this.middlename}" disabled></td>`;
-//                 validation+=`<td><input id='inp3[${j}]'  value="${this.lastname}" disabled></td>`;
-//                 validation+=`<td><input id='inp4[${j}]'  value="${this.email}" disabled></td>`;
-//                 validation+=`<td><input id='inp5[${j}]'  value="${this.phonenumber}" disabled></td>`;
-//                 validation+=`<td><input id='inp6[${j}]'  value="${this.role}" disabled></td>`;
-//                 validation+=`<td><input id='inp7[${j}]'  value="${this.address}" disabled></td>`;
-//                 validation+=`<td><input id='inp8[${j}]'  value="${customern}" disabled></td>`;
+//                 validation+=`<td><input id='inp0[${initialRowCount}]'  value="${this.UserId}" disabled></td>`;
+//                 validation+=`<td><input id='inp1[${initialRowCount}]'  value="${this.firstname}" disabled></td>`;
+//                 validation+=`<td><input id='inp2[${initialRowCount}]'  value="${this.middlename}" disabled></td>`;
+//                 validation+=`<td><input id='inp3[${initialRowCount}]'  value="${this.lastname}" disabled></td>`;
+//                 validation+=`<td><input id='inp4[${initialRowCount}]'  value="${this.email}" disabled></td>`;
+//                 validation+=`<td><input id='inp5[${initialRowCount}]'  value="${this.phonenumber}" disabled></td>`;
+//                 validation+=`<td><input id='inp6[${initialRowCount}]'  value="${this.role}" disabled></td>`;
+//                 validation+=`<td><input id='inp7[${initialRowCount}]'  value="${this.address}" disabled></td>`;
+//                 validation+=`<td><input id='inp8[${initialRowCount}]'  value="${customern}" disabled></td>`;
 
 
 //                 // adding buttons for crud operations
 //                 validation+=`<td id="btn1"> 
-//                 <button id="Editing" onClick="new Myclass().Update(this,${j})">Edit</button>
-//                 <button id="Cancel[${j}]" onClick="new Myclass().Cancel(${j})" disabled>Cancel</button>
-//                 <button id="Save" onClick="new Myclass().Save(${j})">Save</button>
-//                 <button id="onDeleting" onClick="new Myclass().Delete(this,${j})">Delete</button> </td>`;
+//                 <button id="Editing" onClick="new Myclass().Update(this,${initialRowCount})">Edit</button>
+//                 <button id="Cancel[${initialRowCount}]" onClick="new Myclass().Cancel(${initialRowCount})" disabled>Cancel</button>
+//                 <button id="Save" onClick="new Myclass().Save(${initialRowCount})">Save</button>
+//                 <button id="onDeleting" onClick="new Myclass().Delete(this,${initialRowCount})">Delete</button> </td>`;
 //                         validation+=`</tr>`;
-//                 j++;
+//                 initialRowCount++;
 //                 });
                 
 //                 document.getElementById("page").innerHTML=` ${tab} ${validation}
